@@ -32,7 +32,7 @@ Use these settings:
 ```text
 Runtime: Node
 Build command: none
-Start command: node server.js
+Start command: npm start
 ```
 
 Add `OPENAI_API_KEY` in Render environment variables.

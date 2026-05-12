@@ -1,0 +1,13 @@
+{
+  "name": "bagsmith-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI launch operating system for Bags-native creator coins.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
