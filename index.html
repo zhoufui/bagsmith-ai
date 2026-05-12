@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BagSmith AI</title>
+    <link rel="icon" href="./assets/bagsmith-icon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#202321" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Workspace navigation">
+        <div class="brand-block">
+          <div class="brand-mark">B</div>
+          <div>
+            <p class="brand-name">BagSmith AI</p>
+            <p class="brand-subtitle">Creator coin studio</p>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Main navigation">
+          <button class="nav-item active" data-section="brief">
+            <span class="nav-icon">01</span>
+            <span>Brief</span>
+          </button>
+          <button class="nav-item" data-section="plan">
+            <span class="nav-icon">02</span>
+            <span>Launch Plan</span>
+          </button>
+          <button class="nav-item" data-section="campaign">
+            <span class="nav-icon">03</span>
+            <span>Campaign</span>
+          </button>
+          <button class="nav-item" data-section="dashboard">
+            <span class="nav-icon">04</span>
+            <span>Dashboard</span>
+          </button>
+        </nav>
+
+        <div class="wallet-panel">
+          <p class="eyebrow">Solana Wallet</p>
+          <button class="wallet-button" id="walletButton" type="button">
+            <span class="status-dot"></span>
+            <span id="walletLabel">Connect</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Bags Hackathon MVP</p>
+            <h1>Design, launch, and grow a creator coin.</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="ghost-button" id="loadSample" type="button">Load sample</button>
+            <button class="primary-button" id="generateTop" type="button">Generate plan</button>
+          </div>
+        </header>
+
+        <section class="launch-proof" aria-label="Bags launch proof">
+          <div>
+            <p class="eyebrow">Launched on Bags</p>
+            <h2>Connect this MVP to your live Bags project.</h2>
+            <p id="bagsProofText">Add your Bags project URL after launching BagSmith AI on Bags.</p>
+          </div>
+          <a class="proof-link disabled" id="bagsProofLink" href="https://bags.fm/" target="_blank" rel="noreferrer">Add Bags URL</a>
+        </section>
+
+        <section class="section active" id="brief">
+          <div class="brief-grid">
+            <form class="panel brief-form" id="briefForm">
+              <div class="panel-heading">
+                <p class="eyebrow">Creator Brief</p>
+                <h2>Launch inputs</h2>
+              </div>
+
+              <label>
+                Creator or project name
+                <input id="creatorName" name="creatorName" value="Mira Sound Lab" />
+              </label>
+
+              <label>
+                Category
+                <select id="category" name="category">
+                  <option>Music creator</option>
+                  <option>Indie game studio</option>
+                  <option>AI educator</option>
+                  <option>Fashion designer</option>
+                  <option>Web3 community</option>
+                </select>
+              </label>
+
+              <label>
+                Audience
+                <input id="audience" name="audience" value="lo-fi listeners, remix artists, and early Solana collectors" />
+              </label>
+
+              <label>
+                Launch goal
+                <textarea id="goal" name="goal">Fund a collaborative sample pack, reward remix contributors, and build a token-gated listening club on Bags.</textarea>
+              </label>
+
+              <label>
+                Tone
+                <select id="tone" name="tone">
+                  <option>Polished and creator-first</option>
+                  <option>Playful and meme-native</option>
+                  <option>Technical and investor-ready</option>
+                  <option>Community-led and warm</option>
+                </select>
+              </label>
+
+              <fieldset>
+                <legend>Coin utilities</legend>
+                <div class="checkbox-grid">
+                  <label><input type="checkbox" name="utility" value="member drops" checked /> Member drops</label>
+                  <label><input type="checkbox" name="utility" value="community voting" checked /> Voting</label>
+                  <label><input type="checkbox" name="utility" value="content unlocks" checked /> Unlocks</label>
+                  <label><input type="checkbox" name="utility" value="revenue sharing" /> Splits</label>
+                  <label><input type="checkbox" name="utility" value="live event access" /> Events</label>
+                  <label><input type="checkbox" name="utility" value="bounty rewards" checked /> Bounties</label>
+                </div>
+              </fieldset>
+
+              <div class="form-actions">
+                <button class="primary-button" type="submit">Generate launch kit</button>
+              </div>
+            </form>
+
+            <div class="panel preview-panel">
+              <div class="panel-heading">
+                <p class="eyebrow">AI Workspace</p>
+                <h2>Current launch kit</h2>
+              </div>
+              <div class="coin-card">
+                <div class="coin-symbol" id="coinSymbol">MIRA</div>
+                <div>
+                  <h3 id="coinName">Mira Sound Lab Coin</h3>
+                  <p id="coinSummary">A Bags-native creator coin for music drops, remix rewards, and token-gated community listening sessions.</p>
+                </div>
+              </div>
+              <div class="metric-row">
+                <div>
+                  <span>Launch readiness</span>
+                  <strong id="readiness">86%</strong>
+                </div>
+                <div>
+                  <span>Community fit</span>
+                  <strong id="fitScore">A-</strong>
+                </div>
+              </div>
+              <div class="insight-list" id="quickInsights"></div>
+            </div>
+          </div>
+
+          <div class="panel analyzer-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Bags Project Analyzer</p>
+                <h2>Improve an existing launch</h2>
+              </div>
+            </div>
+            <div class="analyzer-grid">
+              <label>
+                Bags project URL
+                <input id="bagsUrl" placeholder="https://bags.fm/..." />
+              </label>
+              <label>
+                Project notes or pasted description
+                <textarea id="bagsNotes" placeholder="Paste a Bags project description, creator bio, or launch notes."></textarea>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button" id="analyzeBags" type="button">Analyze Bags project</button>
+              <button class="ghost-button" id="saveBagsUrl" type="button">Save as launch proof</button>
+            </div>
+            <div class="token-result" id="bagsAnalysis">
+              Paste a Bags project URL or description to generate positioning, utility, risk, and campaign suggestions.
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="plan">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">AI Launch Plan</p>
+              <h2>Generated Bags strategy</h2>
+            </div>
+            <button class="ghost-button" id="copyPlan" type="button">Copy pitch</button>
+          </div>
+          <div class="plan-layout">
+            <article class="panel plan-card">
+              <p class="eyebrow">Positioning</p>
+              <h3 id="positioningTitle">Creator-owned sound economy</h3>
+              <p id="positioningText"></p>
+            </article>
+            <article class="panel plan-card">
+              <p class="eyebrow">Bags Integration</p>
+              <h3>Launch surface</h3>
+              <p id="bagsIntegration"></p>
+            </article>
+            <article class="panel plan-card">
+              <p class="eyebrow">Utility Rules</p>
+              <h3>Holder value</h3>
+              <ul id="utilityRules"></ul>
+            </article>
+            <article class="panel plan-card">
+              <p class="eyebrow">Risk Notes</p>
+              <h3>Responsible launch</h3>
+              <ul id="riskNotes"></ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="campaign">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Campaign Generator</p>
+              <h2>Launch week board</h2>
+            </div>
+            <div class="segmented" role="tablist" aria-label="Campaign view">
+              <button class="segment active" data-campaign="posts" type="button">Posts</button>
+              <button class="segment" data-campaign="tasks" type="button">Tasks</button>
+              <button class="segment" data-campaign="drops" type="button">Drops</button>
+            </div>
+          </div>
+          <div class="campaign-grid" id="campaignGrid"></div>
+        </section>
+
+        <section class="section" id="dashboard">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Growth Dashboard</p>
+              <h2>Post-launch signal</h2>
+              <p class="section-note">Demo metrics with one live Solana token data point.</p>
+            </div>
+            <button class="primary-button" id="refreshMetrics" type="button">Refresh insight</button>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span>Holders</span>
+              <strong id="holdersMetric">2,418</strong>
+              <small>+18.4% this week</small>
+            </div>
+            <div class="stat-card">
+              <span>Volume</span>
+              <strong id="volumeMetric">$184K</strong>
+              <small>+31.2% this week</small>
+            </div>
+            <div class="stat-card">
+              <span>Tasks Done</span>
+              <strong id="tasksMetric">7,920</strong>
+              <small>64% from repeat holders</small>
+            </div>
+            <div class="stat-card">
+              <span>Sentiment</span>
+              <strong id="sentimentMetric">82</strong>
+              <small>Healthy community demand</small>
+            </div>
+          </div>
+
+          <div class="dashboard-layout">
+            <div class="panel chart-panel">
+              <div class="panel-heading">
+                <p class="eyebrow">Momentum</p>
+                <h3>Holder growth</h3>
+              </div>
+              <div class="bar-chart" id="barChart" aria-label="Holder growth chart"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-heading">
+                <p class="eyebrow">AI Next Actions</p>
+                <h3>Recommended moves</h3>
+              </div>
+              <div class="action-list" id="nextActions"></div>
+            </div>
+          </div>
+
+          <div class="panel token-panel">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Solana Data Point</p>
+                <h3>Token mint lookup</h3>
+              </div>
+            </div>
+            <div class="token-lookup">
+              <input id="mintAddress" placeholder="Paste a Solana token mint address" />
+              <button class="primary-button" id="lookupMint" type="button">Lookup mint</button>
+            </div>
+            <div class="token-result" id="tokenResult">
+              Enter a token mint to read live supply and decimals from Solana mainnet.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>
